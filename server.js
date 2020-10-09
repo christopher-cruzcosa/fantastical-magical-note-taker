@@ -73,16 +73,16 @@ app.delete("/api/notes/:id", (req, res) => {
         if (err) throw err;
 
         let arrayOfObjects = JSON.parse(data);
-        let sliceLocation;
+        let spliceLocation;
 
         for (let i = 0; i < arrayOfObjects.length; i++) {
             if (chosen === arrayOfObjects[i].id) {
-                sliceLocation = i - 1;
+                spliceLocation = i;
                 console.log(sliceLocation);
             }
         };
 
-        let newArray = arrayOfObjects.slice(sliceLocation, 1);
+        let newArray = arrayOfObjects.splice(sliceLocation, 1);
 
         fs.writeFile("./db/db.json", JSON.stringify(newArray), "utf8", (err) => {
             if (err) throw err;
