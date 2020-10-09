@@ -51,9 +51,8 @@ app.post("/api/notes", (req, res) => {
         let arrayOfObjects = JSON.parse(data);
         let newNote = req.body
 
-        noteCount += 1;
-
         newNote.id = noteCount;
+        noteCount += 1;
 
         arrayOfObjects.push(newNote);
 
