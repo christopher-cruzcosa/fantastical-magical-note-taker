@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 let noteCount = 0;
+const idFormatter ="a"
 
 
 // Sets up the Express app to handle data parsing
@@ -51,7 +52,7 @@ app.post("/api/notes", (req, res) => {
         let arrayOfObjects = JSON.parse(data);
         let newNote = req.body
 
-        newNote.id = noteCount;
+        newNote.id = (idFormatter + noteCount);
         noteCount += 1;
 
         arrayOfObjects.push(newNote);
@@ -75,20 +76,17 @@ app.delete("/api/notes/:id", (req, res) => {
         let arrayOfObjects = JSON.parse(data);
         let spliceLocation;
 
+
         for (let i = 0; i < arrayOfObjects.length; i++) {
             if (chosen === arrayOfObjects[i].id) {
                 spliceLocation = i;
+                console.log(spliceLocation)
             }
         };
 
-        let newArray;
+        arrayOfObjects.splice(spliceLocation, 1);
 
-        if(arrayOfObjects.length > 1){
-            newArray = arrayOfObjects.splice(spliceLocation, 1);
-        }
-        else {newArray = []}
-
-        fs.writeFile("./db/db.json", JSON.stringify(newArray), "utf8", (err) => {
+        fs.writeFile("./db/db.json", JSON.stringify(arrayOfObjects), "utf8", (err) => {
             if (err) throw err;
             return res.json(arrayOfObjects)
         })
