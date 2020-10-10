@@ -16,7 +16,7 @@ The user is first sent to a main page, which links to the notes page.  That page
 
 Below is screenshot of the main notes section.
 
-![Screenshot 1](.public/assets/images/screenshot1.png)
+![Screenshot 1](./public/assets/images/screenshot1.png)
 
 
 ## Credits
