@@ -11,11 +11,12 @@ The application is deployed to: https://sheltered-plains-29662.herokuapp.com/
 ## Usage 
 
 The user is first sent to a main page, which links to the notes page.  That page has all previous notes on the left side and the main right side is where a new note is written and then saved.  Notes only have a title and text area.  The saved notes on the left side can be deleted by clicking the trash can icon next to each one.
+
 -----
 
 Below is screenshot of the main notes section.
 
-![Screenshot 1](/assets/images/screenshot1.png)
+![Screenshot 1](.public/assets/images/screenshot1.png)
 
 
 ## Credits
