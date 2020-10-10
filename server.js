@@ -8,15 +8,15 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
+//Note count, to be used to created unique id's
 let noteCount = 0;
 const idFormatter ="a"
 
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle data parsing and to read local files
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Starts the server to begin listening
@@ -28,6 +28,7 @@ app.listen(PORT, () => {
 // Routes
 // =============================================================
 
+//renders the two pages
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
@@ -45,6 +46,7 @@ app.get("/api/notes", (req, res) => {
     });
 })
 
+//Posts the new note by reading the existing db file and then adding to the array
 app.post("/api/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (err, data) => {
         if (err) throw err;
@@ -65,7 +67,7 @@ app.post("/api/notes", (req, res) => {
     });
 });
 
-
+//Deletes the selected note by reading the note to be deleted's id, finding the id's location in the db array, and then removing that object from the db array
 app.delete("/api/notes/:id", (req, res) => {
     const chosen = req.params.id;
     console.log(chosen);
